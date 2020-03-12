@@ -13,18 +13,22 @@ The response type is json
 The "200 OK" response is an array of objects with the following structure:
 
 {
+
 	"id": 10552,
+	
 	"processName": "SearchUI",
+	
 	"virtualMemorySize64": 2238764425216
+	
 }
 
 Description of the values in the response:
 
-"id" - int - the unique identifier for the associated process
+	"id" - int - the unique identifier for the associated process
 
-"processName" - string - the name of the process
+	"processName" - string - the name of the process
 
-"virtualMemorySize64" - long - the amount of the virtual memory, in bytes, allocated for the associated process
+	"virtualMemorySize64" - long - the amount of the virtual memory, in bytes, allocated for the associated process
 
 
 The "400 Bad Request" response is a string containg the exception message.
