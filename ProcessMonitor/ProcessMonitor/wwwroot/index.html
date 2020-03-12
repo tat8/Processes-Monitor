@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Process Monitor</title>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3>Running processes</h3>
+    <div id="app">
+        <table>
+            <tr class="table-header">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Memory (bytes)</th>
+            </tr>
+
+            <tr v-for="item in processes">
+                <td>{{item.id}}</td>
+                <td>{{item.processName}}</td>
+                <td>{{item.virtualMemorySize64}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                processes: [],
+                urlGetProcesses: 'https://localhost:44335/api/process'
+            },
+            created() {
+                this.getProcesses();
+            },
+            methods: {
+                getProcesses() {
+                    axios.get(this.urlGetProcesses)
+                        .then(response => {
+                            this.processes = response.data;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+            }
+        })
+    </script>
+</body>
+</html>
